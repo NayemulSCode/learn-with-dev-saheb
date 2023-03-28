@@ -31,10 +31,8 @@ function addUser(obj){
 // insert into dom
 
 function udpateDOM(provideData = data){
-    // console.log("provided",provideData)
-    main.innerHTML= '<h2><strong>Person</strong> Wealth</h2>';
+    const element = document.createElement('div');
     provideData.forEach(item=>{
-        const element = document.createElement('div');
         element.classList.add('person');
         element.innerHTML = `<strong>${item.name}</strong> $${item.money}`
         main.appendChild(element);
