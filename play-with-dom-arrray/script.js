@@ -31,14 +31,16 @@ function addUser(obj){
 // insert into dom
 
 function udpateDOM(provideData = data){
-    const element = document.createElement('div');
+    // clear main div
+    main.innerHTML = '<h2><strong>Person</strong> Wealth</h2>';
     provideData.forEach(item=>{
+        const element = document.createElement('div');
         element.classList.add('person');
-        element.innerHTML = `<strong>${item.name}</strong> $${item.money}`
+        element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(item.money)}`
         main.appendChild(element);
     });
+    
 };
-
 let sum = 0;
 function summation() {
     data.forEach((user) => {
@@ -53,7 +55,7 @@ function calculateWealth(){
        return a + user.money;
     },0);
     const wealthEle = document.createElement('div');
-    wealthEle.innerHTML = `Total wealth= ${sum}`;
+    wealthEle.innerHTML = `Total wealth= ${formatMoney(sum)}`;
     main.appendChild(wealthEle);
 }
 // double money
@@ -67,6 +69,10 @@ function doubleMoney(){
     });
     udpateDOM();
 };
+
+function formatMoney(number) {
+    return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
 
 // filter only milllionires
 function showMillionaires(){
