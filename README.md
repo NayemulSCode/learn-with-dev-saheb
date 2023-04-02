@@ -1,5 +1,7 @@
 # learn-with-dev-saheb
-##thousands separators in a number
+## thousands separators in a number
+
+# explanation of regx : /\d(?=(\d{3})+\.)/g, '$&,'
 
 This is a regular expression written in JavaScript syntax. It matches any digit (\d) that is immediately followed by a multiple of three digits ((\d{3})+) followed by a dot (\.). The g at the end means that it will match all occurrences in a string, not just the first.
 
