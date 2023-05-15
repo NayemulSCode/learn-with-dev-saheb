@@ -9,10 +9,16 @@ const currentEl = document.getElementById('current');
 
 const cardsContainer = document.getElementById('cards-container');
 
+// navigation element
+const nextBtn = document.getElementById('next');
+const prevBtn = document.getElementById('prev');
+// clear button
+const clearBtn = document.getElementById('clear');
+
 //DOM Array
 const cardEl = [];
 
-const currentActiveCard = 0;
+let currentActiveCard = 0;
 
 let cardsData = getCardsData();
 // create all cards
@@ -57,6 +63,30 @@ function updateCurrentTotal(){
   currentEl.innerText = `${currentActiveCard + 1} / ${cardEl.length}`
 }
 
+const arr = [2,3,4];
+arr[1] 
+// next button
+nextBtn.addEventListener('click', ()=>{
+  cardEl[currentActiveCard].className = 'card left';
+  currentActiveCard = currentActiveCard + 1;
+  if(currentActiveCard > cardEl.length - 1){
+    currentActiveCard = cardEl.length - 1;
+  }
+  cardEl[currentActiveCard].className = 'card active';
+  updateCurrentTotal()
+});
+//previous button
+prevBtn.addEventListener('click', ()=>{
+  cardEl[currentActiveCard].className = 'card right';
+  currentActiveCard = currentActiveCard - 1;
+  if(currentActiveCard < 0){
+    currentActiveCard = 0;
+  }
+  cardEl[currentActiveCard].className = 'card active';
+  updateCurrentTotal()
+});
+
+
 
 //add local storage
 function setCardsData(cards){
@@ -82,4 +112,11 @@ addCardBtn.addEventListener('click', ()=>{
       cardsData.push(newObj);
       setCardsData(cardsData);
     }
+});
+
+// clear all localstorage card
+clearBtn.addEventListener('click', ()=>{
+  localStorage.clear();
+  cardsContainer.innerHTML = '';
+  window.location.reload();
 })
